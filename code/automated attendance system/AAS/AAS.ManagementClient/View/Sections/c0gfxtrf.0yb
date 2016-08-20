@@ -1,0 +1,129 @@
+﻿<UserControl x:Class="AAS.GUI.Sections.EmployeeWorkSchedule"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="780" d:DesignWidth="1024" Background="White">
+    <UserControl.Resources>
+        <Style x:Key="DurationLabel" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="B Koodak" />
+            <Setter Property="Grid.Row" Value="0" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Padding" Value="10,0,10,0" />
+        </Style>
+        <Style x:Key="WorkDay" TargetType="Rectangle">
+            <Setter Property="Margin" Value="1,0,1,0"/>
+            <Setter Property="Height" Value="55" />
+            <Setter Property="Width" Value="60" />
+            <Setter Property="Fill" Value="Orange" />
+        </Style>
+        <Style x:Key="OffDay" TargetType="Rectangle">
+            <Setter Property="Margin" Value="10,0,10,0"/>
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="55" />
+            <Setter Property="Fill" Value="Transparent" />
+        </Style>
+        <Style x:Key="DurationColumn" TargetType="ColumnDefinition">
+            <Setter Property="Width" Value="60"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel>
+        <TextBlock x:Name="textBlock_Title" Padding="0,0,20,0"  TextAlignment="Right" Style="{DynamicResource Title}" Text="{DynamicResource WorkSchedule}"/>
+        <StackPanel Orientation="Horizontal" Height="571">
+            <Grid ShowGridLines="True" Width="850" Margin="25,21,10,0" FlowDirection="RightToLeft"  HorizontalAlignment="Right">
+                <TextBlock Grid.Column="0" Style="{DynamicResource DurationLabel}" Text="00:00&#x0a;01:00"/>
+                <TextBlock Grid.Column="1"  Style="{DynamicResource DurationLabel}" Text="01:00&#x0a;02:00"/>
+                <TextBlock Grid.Column="2" Style="{DynamicResource DurationLabel}" Text="02:00&#x0a;03:00"/>
+                <TextBlock Grid.Column="3"  Style="{DynamicResource DurationLabel}" Text="03:00&#x0a;04:00"/>
+                <TextBlock Grid.Column="4" Style="{DynamicResource DurationLabel}" Text="04:00&#x0a;05:00"/>
+                <TextBlock Grid.Column="5" Style="{DynamicResource DurationLabel}" Text="05:00&#x0a;06:00"/>
+                <TextBlock Grid.Column="6" Style="{DynamicResource DurationLabel}" Text="07:00&#x0a;08:00"/>
+                <TextBlock Grid.Column="7"  Style="{DynamicResource DurationLabel}" Text="09:00&#x0a;10:00"/>
+                <TextBlock Grid.Column="8" Style="{DynamicResource DurationLabel}" Text="11:00&#x0a;12:00"/>
+                <TextBlock Grid.Column="9"  Style="{DynamicResource DurationLabel}" Text="12:00&#x0a;13:00"/>
+                <TextBlock Grid.Column="10"  Style="{DynamicResource DurationLabel}" Text="13:00&#x0a;14:00"/>
+                <TextBlock Grid.Column="11"  Style="{DynamicResource DurationLabel}" Text="14:00&#x0a;15:00"/>
+                <TextBlock Grid.Column="12"  Style="{DynamicResource DurationLabel}" Text="15:00&#x0a;16:00"/>
+                <TextBlock Grid.Column="13" Style="{DynamicResource DurationLabel}" Text="16:00&#x0a;17:00"/>
+                <TextBlock Grid.Column="14"  Style="{DynamicResource DurationLabel}" Text="17:00&#x0a;18:00"/>
+                <TextBlock Grid.Column="15" Style="{DynamicResource DurationLabel}" Text="18:00&#x0a;19:00"/>
+                <TextBlock Grid.Column="16" Style="{DynamicResource DurationLabel}" Text="19:00&#x0a;20:00"/>
+                <TextBlock Grid.Column="17"  Style="{DynamicResource DurationLabel}" Text="20:00&#x0a;21:00"/>
+                <TextBlock Grid.Column="18" Style="{DynamicResource DurationLabel}" Text="21:00&#x0a;22:00"/>
+                <TextBlock Grid.Column="19"  Style="{DynamicResource DurationLabel}" Text="22:00&#x0a;23:00"/>
+                <TextBlock Grid.Column="20" Style="{DynamicResource DurationLabel}" Text="23:00&#x0a;00:00"/>
+                <!--
+                <StackPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,20,0,0">
+                    <Rectangle Style="{DynamicResource WorkDay}" />
+                    <Rectangle  Style="{DynamicResource WorkDay}" />
+                    <Rectangle Style="{DynamicResource WorkDay}" />
+                    <Rectangle  Style="{DynamicResource WorkDay}" />
+                    <Rectangle Style="{DynamicResource WorkDay}" />
+                    <Rectangle  Style="{DynamicResource WorkDay}" />
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,20,0,0" FlowDirection="RightToLeft">
+                    <Rectangle Style="{DynamicResource OffDay}" />
+                    <Rectangle  Style="{DynamicResource OffDay}" />
+                    <Rectangle Style="{DynamicResource OffDay}" />
+                    <Rectangle  Style="{DynamicResource OffDay}" />
+                    <Rectangle Style="{DynamicResource OffDay}" />
+                    <Rectangle  Style="{DynamicResource WorkDay}" />
+                    <Rectangle  Style="{DynamicResource WorkDay}" />
+                    <Rectangle  Style="{DynamicResource WorkDay}" />
+                    <Rectangle  Style="{DynamicResource WorkDay}" />
+                </StackPanel>
+                <Rectangle Grid.ColumnSpan="3" Grid.Column="4" HorizontalAlignment="Left" Height="100" Margin="5,51,0,0" Grid.Row="5" Grid.RowSpan="3" VerticalAlignment="Top" Width="100"/>
+                -->
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    <ColumnDefinition Style="{DynamicResource DurationColumn}"  />
+                    
+                    
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="69" />
+                    <RowDefinition Height="69*" />
+                    <RowDefinition Height="69*" />
+                    <RowDefinition Height="69*" />
+                    <RowDefinition Height="68*" />
+                    <RowDefinition Height="69*" />
+                    <RowDefinition Height="68*" />
+                    <RowDefinition Height="69*" />
+                </Grid.RowDefinitions>
+            </Grid>
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="0,90,0,2">
+                <TextBlock Style="{DynamicResource LabelBlock}" Text="{DynamicResource Saturday}" />
+                <TextBlock Style="{DynamicResource LabelBlock}" Text="{DynamicResource Sunday}" />
+                <TextBlock Style="{DynamicResource LabelBlock}" Text="{DynamicResource Monday}" />
+                <TextBlock Style="{DynamicResource LabelBlock}" Text="{DynamicResource Tuesday}" />
+                <TextBlock Style="{DynamicResource LabelBlock}" Text="{DynamicResource Wednesday}" />
+                <TextBlock Style="{DynamicResource LabelBlock}" Text="{DynamicResource Thursday}" />
+                <TextBlock Style="{DynamicResource LabelBlock}" Text="{DynamicResource Friday}" />
+            </StackPanel>
+        </StackPanel>
+
+    </StackPanel>
+</UserControl>

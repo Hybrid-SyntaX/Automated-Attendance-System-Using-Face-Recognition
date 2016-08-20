@@ -1,0 +1,133 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:section="clr-namespace:AAS.ManagementClient.Sections" 
+             xmlns:c="clr-namespace:AAS.GUI.Converters;assembly=AAS.GUI"
+                xmlns:System="clr-namespace:System;assembly=mscorlib" 
+                xmlns:Entities="clr-namespace:AAS.Entities;assembly=AAS.Entities" 
+                xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+                x:Class="AAS.ManagementClient.View.Sections.EmployeeAttendanceTimes"
+                xmlns:lc="clr-namespace:AAS.ManagementClient.Converters"
+             mc:Ignorable="d" 
+             d:DesignWidth="1000" Background="White"
+                   d:DesignHeight="500"
+    DataContext="{Binding Source={StaticResource Locator},Path=EmployeeAttendanceTimesViewModel}"
+             >
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="AttendaneStatus" 
+			MethodName="GetNames" ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="Entities:AttendanceStatus" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    
+        <Grid FlowDirection="RightToLeft">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal"  Height="50" Margin="10" Width="945">
+                <WrapPanel Canvas.Left="728" Canvas.Top="44" Width="250" VerticalAlignment="Center" Height="30" Margin="0,10">
+                    <TextBlock Text="روز های حضور"  FontSize="15" FontFamily="B Koodak" />
+                    <TextBlock  Margin="5,0,0,0" Text="{Binding Employee}" FontSize="15" FontFamily="B Koodak" />
+                </WrapPanel>
+                <ComboBox Margin="10"  Width="190" Height="30" 
+						ItemsSource="{Binding Source={StaticResource AttendaneStatus},Converter={lc:EnumLocalizer}}"
+						BorderBrush="Black" 
+						FontFamily="B Roya"
+						FontSize="18"
+						SelectedIndex="0"
+						VerticalAlignment="Center"
+                        DisplayMemberPath="Text"
+                          SelectedValuePath="Value"
+						SelectedValue="{Binding CurrentAttendanceStatusFitler, Mode=TwoWay}" >
+
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding FilterEmployeeAttendanceTimesCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+                <StackPanel Orientation="Horizontal">
+
+                    <StackPanel Orientation="Horizontal">
+                        <ToggleButton BorderThickness="0" Width="30" Height="30" Style="{StaticResource Button}" FontSize="20"  x:Name="toggleButton_enableStartDateFilter" 
+                                      IsChecked="{Binding UseStartDateFilter}"  Content="{StaticResource From}" Command="{Binding FilterEmployeeAttendanceTimesCommand}" />
+                        <DatePicker Width="165" SelectedDate="{Binding StartDateFilter, Converter={c:GregorianToJalaliConverter}, Mode=TwoWay, StringFormat=\{0:yyyy-MM-dd\}}"
+                                      FontSize="18" FontFamily="B Roya"
+                                     IsEnabled="{Binding IsChecked, ElementName=toggleButton_enableStartDateFilter}" Height="30"
+                                     >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectedDateChanged">
+                                    <i:InvokeCommandAction Command="{Binding FilterEmployeeAttendanceTimesCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </DatePicker>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" >
+
+
+                        <ToggleButton BorderThickness="0" Width="30" Height="30" Style="{StaticResource Button}"  FontSize="20" 
+                                      x:Name="toggleButton_enableEndDateFilter" IsChecked="{Binding UseEndDateFilter}"  Content="{StaticResource To}" Command="{Binding FilterEmployeeAttendanceTimesCommand}" />
+                        <DatePicker Width="165" SelectedDate="{Binding EndDateFilter, Converter={c:GregorianToJalaliConverter}, Mode=TwoWay, StringFormat=\{0:yyyy-MM-dd\}}"
+                                    FontSize="18" FontFamily="B Roya"
+                                     IsEnabled="{Binding IsChecked, ElementName=toggleButton_enableEndDateFilter}" Height="30"
+                                 
+                                     >
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectedDateChanged">
+                                    <i:InvokeCommandAction Command="{Binding FilterEmployeeAttendanceTimesCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </DatePicker>
+                    </StackPanel>
+                </StackPanel>
+
+
+                <Button  Style="{StaticResource IconButton}" Command="{Binding PrintCommand}" Height="30" HorizontalAlignment="Left" Margin="10,0,0,0" Content="{DynamicResource PrintIcon}"   />
+            </StackPanel>
+            <DataGrid Grid.Row="1"
+                      
+                AutoGenerateColumns="False" 
+                    ItemsSource="{Binding FilteredAttendanceTimes}"
+                    x:Name="dataGrid_EmployeeAttendanceTimes" 
+                    
+                    Height="Auto"
+                    HorizontalAlignment="Left"
+                	ScrollViewer.CanContentScroll="True"
+                	ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                	ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                    Width="918" 
+                    ScrollViewer.PanningMode="Both"
+                    Visibility="{Binding ShowAbsence, ConverterParameter=Inverse, Converter={c:BooleanToVisiblityConverter}}"
+                  >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{DynamicResource AttendanceDate}" Binding="{Binding EntryTime, Converter={c:GregorianToJalaliConverter}, StringFormat=\{0:yyyy-MM-dd\}}" />
+                    <DataGridTextColumn Header="{DynamicResource EntryTime}" Binding="{Binding EntryTime, StringFormat=\{0:HH:mm:ss\}}" />
+                    <DataGridTextColumn Header="{DynamicResource ExitTime}" Binding="{Binding ExitTime, StringFormat=\{0:HH:mm:ss\}}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid Grid.Row="1"
+                Visibility="{Binding ShowAbsence,Converter={c:BooleanToVisiblityConverter}}"
+                ItemsSource="{Binding FilteredAbsenceTimes}"
+                AutoGenerateColumns="False"
+                 Height="266"
+                        Width="918" 
+                   HorizontalAlignment="Left"
+                	ScrollViewer.CanContentScroll="True"
+                	ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                	ScrollViewer.VerticalScrollBarVisibility="Auto"  >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{DynamicResource Day}" Binding="{Binding DayOfWeek,Converter={c:WeekDayNameLocalizer}}" />
+                    <DataGridTextColumn Header="{DynamicResource AbsenceDate}" Binding="{Binding Date,Converter={c:GregorianToJalaliConverter}, StringFormat=\{0:yyyy-MM-dd\}}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    
+</UserControl>

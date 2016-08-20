@@ -1,0 +1,100 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AAS.Logic;
+using AAS.Logic.Exceptions;
+using NUnit.Framework;
+namespace AAS.Logic.Test.Unit
+{
+    public class WorkshiftTest:AssertionHelper
+    {
+        Workshift workshiftFixture;
+        static bool[] _9to5;        
+        
+        List<TestCaseData> ValidWorkshift = new List<TestCaseData>() {
+            new TestCaseData("7780-0-0-0-0-0-0"),
+            new TestCaseData("007780-000000-000000-000000-000000-000000-000000"),
+            //new TestCaseData("FFFF-0-0-0-0-0-0")
+        };
+        string[] InvalidWorkshift = { "0107780-0-0-0-0-0-0" ,"3-0-0-0-0-0","4-0-0-0-0-0-0-2","-0-0-0-0-0-0","231",""," " };
+        
+        [TestFixtureSetUp]
+        public void SetUP()
+        {
+            workshiftFixture = new Workshift();
+            _9to5 = new bool[24]{false,false,false,false,false,false,
+                                        false,false,false,true,true,true,
+                                        false,true,true,true,true,false,
+                                        false,false,false,false,false,false};
+        }
+        [Test]
+        public void TestMaxValue()
+        {
+            Workshift parsedWorkshift = Workshift.MaxValue;
+            Expect(parsedWorkshift.ToString(), Is.EqualTo("ffffff-ffffff-ffffff-ffffff-ffffff-ffffff-ffffff"));
+        }
+        [Test]
+        public void TestMinValue()
+        {
+            Workshift parsedWorkshift = Workshift.MinValue;
+            Expect(parsedWorkshift.ToString(), Is.EqualTo("0-0-0-0-0-0-0"));
+        }
+
+        
+        [Test] public void TestAddShiftandGetShift()
+        {
+            
+            workshiftFixture.AddShift(DayOfWeek.Saturday, 9, 12);
+            workshiftFixture.AddShift(DayOfWeek.Saturday, 13, 17);
+
+            Expect(() => workshiftFixture.GetShift(DayOfWeek.Saturday), Is.EqualTo(_9to5));
+        }
+
+
+        [Test, TestCaseSource("ValidWorkshift")]
+        public void Parse_WithValidInput_ReturnsValidOutput(string validInput)
+        {
+            Workshift parsedWorkshift = Workshift.Parse(validInput);
+            Expect(() => parsedWorkshift.GetShift(DayOfWeek.Saturday), Is.EqualTo(_9to5));
+            
+        }
+        [Test,TestCaseSource("ValidWorkshift")]
+        public void Parse_WithValidInput_Passes(string validInput)
+        {
+            
+            Expect(() => Workshift.Parse(validInput), Throws.Nothing);
+            
+        }
+        [Test,TestCaseSource("InvalidWorkshift")]
+        public void Parse_WithInValidInput_ThrowsInvalidFormatException(string invalidInput)
+        {
+            Expect(() => Workshift.Parse(invalidInput), Throws.Exception.TypeOf<InvalidFormatException>());
+        }
+        [Test]
+        public void Parse_WithNullInput_ThrowsArgumentNullExceptionException()
+        {
+            Expect(() => Workshift.Parse(null), Throws.Exception.TypeOf<ArgumentNullException>());
+        }
+        [Test]
+        public void TestSerialize()
+        {
+            workshiftFixture.AddShift(DayOfWeek.Saturday, 9, 12);
+            workshiftFixture.AddShift(DayOfWeek.Saturday, 13, 17);
+
+            Expect(() => workshiftFixture.Serialize(), Is.EqualTo("7780-0-0-0-0-0-0"));
+
+        }
+
+        [Test]
+        public void TestToString()
+        {
+            workshiftFixture.AddShift(DayOfWeek.Saturday, 9, 12);
+            workshiftFixture.AddShift(DayOfWeek.Saturday, 13, 17);
+            Expect(() => workshiftFixture.ToString(), Is.EqualTo("7780-0-0-0-0-0-0"));
+        }
+
+  
+    }
+}

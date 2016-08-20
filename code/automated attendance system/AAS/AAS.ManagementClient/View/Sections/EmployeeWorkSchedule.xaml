@@ -1,0 +1,93 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:e="clr-namespace:AAS.ManagementClient.ViewModel"
+             xmlns:c="clr-namespace:AAS.GUI.Converters;assembly=AAS.GUI"
+             
+             xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="AAS.ManagementClient.Sections.EmployeeWorkSchedule"
+             mc:Ignorable="d" 
+             d:DesignHeight="780" d:DesignWidth="800" Background="White"
+             Name="employeeWorkSchedule"
+             >
+
+    <DataGrid ItemsSource="{Binding Converter={c:WorkScheduleToBooleanListConverter}}" 
+              IsEnabled="{Binding IsEnabled,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Control}}}"
+		AutoGenerateColumns="False" FlowDirection="RightToLeft" Canvas.Left="25" Canvas.Top="10"
+		GridLinesVisibility="None"
+		AlternationCount="0"
+		AlternatingRowBackground="White"
+		x:Name="dataGrid" LoadingRow="dataGrid_LoadingRow"  
+              SelectedCellsChanged="dataGrid_SelectedCellsChanged"
+              SelectionChanged="dataGrid_SelectionChanged"
+              SelectionUnit="Cell"
+              MouseDown="dataGrid_MouseDown"
+              MouseMove="dataGrid_MouseMove"
+              ScrollViewer.HorizontalScrollBarVisibility="Auto"
+              ScrollViewer.CanContentScroll="True"
+              ScrollViewer.PanningMode="Both"
+              >
+        <DataGrid.Resources>
+
+            <System:Double x:Key="CellSize">38</System:Double>
+            <System:Double x:Key="FontSize">14</System:Double>
+
+            <Style TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Width" Value="{StaticResource CellSize}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSize}" />
+            </Style>
+            <Style TargetType="{x:Type DataGridRowHeader}">
+                <Setter Property="FontFamily" Value="B Koodak"/>
+                <Setter Property="FontSize" Value="{StaticResource FontSize}" />
+            </Style>
+    
+            <Style TargetType="{x:Type DataGridRow}">
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0" />
+            </Style>
+
+            <Style TargetType="{x:Type DataGridCell}">
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="0" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="{x:Type CheckBox}">
+                <Setter Property="Width" Value="{StaticResource CellSize}" />
+                <Setter Property="Height" Value="{StaticResource CellSize}" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Style.Triggers>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type CheckBox}">
+                                    <Rectangle Fill="Orange"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                    <Trigger Property="IsChecked" Value="False">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type CheckBox}">
+                                    <Rectangle Fill="White"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+        </DataGrid.Resources>
+
+    </DataGrid>
+
+
+</UserControl>

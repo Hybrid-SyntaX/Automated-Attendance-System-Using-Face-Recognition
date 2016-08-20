@@ -1,0 +1,138 @@
+﻿<UserControl x:Class="AAS.ManagementClient.Sections.EmployeeContactInformation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:e="clr-namespace:AAS.ManagementClient.ViewModel"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:c="clr-namespace:AAS.GUI.Converters;assembly=AAS.GUI"
+             mc:Ignorable="d" 
+             
+             d:DesignHeight="450" d:DesignWidth="600" Background="White"
+             Margin="0,0,0,10"
+             >
+
+    <StackPanel FlowDirection="RightToLeft" >
+        <WrapPanel>
+            <TextBlock Margin="10,0,0,0" Text="{DynamicResource Label}" Style="{StaticResource LabelBlock}" />
+            <TextBox Margin="10"
+                     TextAlignment="Left"
+                     FlowDirection="LeftToRight"
+                                 Text="{Binding Path=Label, UpdateSourceTrigger=Explicit,  ValidatesOnNotifyDataErrors=True,ValidatesOnDataErrors=True}" 
+                                 Style="{StaticResource TextBox}" 
+                                 Tag="{Binding Path=Text,RelativeSource={RelativeSource Self},UpdateSourceTrigger=PropertyChanged}"
+                                 Validation.ErrorTemplate="{StaticResource TextFieldErrorTemplate}"
+                                 IsReadOnly="{Binding EditMode,Converter={c:InverseBooleanConverter}}"
+                            
+                                 >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding ExplicitValidationCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type TextBox}}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </WrapPanel>
+        <WrapPanel>
+            <TextBlock Margin="10,0,0,0" Text="{DynamicResource PhoneNumber}" Style="{StaticResource LabelBlock}" />
+            <TextBox Margin="10"
+                 TextAlignment="Left"
+                     FlowDirection="LeftToRight"
+                                 Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=Explicit,  ValidatesOnNotifyDataErrors=True,ValidatesOnDataErrors=True}" 
+                                 Style="{StaticResource TextBox}" 
+                                 Tag="{Binding Path=Text,RelativeSource={RelativeSource Self},UpdateSourceTrigger=PropertyChanged}"
+                                 Validation.ErrorTemplate="{StaticResource TextFieldErrorTemplate}"
+                                 IsReadOnly="{Binding EditMode,Converter={c:InverseBooleanConverter}}"
+                            
+                                 >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding ExplicitValidationCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type TextBox}}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </WrapPanel>
+        <WrapPanel>
+            <TextBlock Margin="10,0,0,0" Text="{DynamicResource CellphoneNumber}" Style="{StaticResource LabelBlock}" />
+            <TextBox Margin="10"
+             TextAlignment="Left"
+                     FlowDirection="LeftToRight"
+                                 Text="{Binding Path=CellphoneNumber, UpdateSourceTrigger=Explicit,  ValidatesOnNotifyDataErrors=True,ValidatesOnDataErrors=True}" 
+                                 Style="{StaticResource TextBox}" 
+                                 Tag="{Binding Path=Text,RelativeSource={RelativeSource Self},UpdateSourceTrigger=PropertyChanged}"
+                                 Validation.ErrorTemplate="{StaticResource TextFieldErrorTemplate}"
+                                 IsReadOnly="{Binding EditMode,Converter={c:InverseBooleanConverter}}"
+                            
+                                 >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding ExplicitValidationCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type TextBox}}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </WrapPanel>
+
+        <WrapPanel>
+            <TextBlock Margin="10,0,0,0" Text="{DynamicResource Email}" Style="{StaticResource LabelBlock}" />
+            <TextBox Margin="10"
+                TextAlignment="Left"
+                     FlowDirection="LeftToRight"
+                                 Text="{Binding Path=Email, UpdateSourceTrigger=Explicit,  ValidatesOnNotifyDataErrors=True,ValidatesOnDataErrors=True}" 
+                                 Style="{StaticResource TextBox}" 
+                                 Tag="{Binding Path=Text,RelativeSource={RelativeSource Self},UpdateSourceTrigger=PropertyChanged}"
+                                 Validation.ErrorTemplate="{StaticResource TextFieldErrorTemplate}"
+                                 IsReadOnly="{Binding EditMode,Converter={c:InverseBooleanConverter}}"
+                            
+                                 >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding ExplicitValidationCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type TextBox}}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </WrapPanel>
+
+        <WrapPanel>
+            <TextBlock Margin="10,0,0,0" Text="{DynamicResource Address}" Style="{StaticResource LabelBlock}" />
+            <TextBox Margin="10"
+                       TextAlignment="Left"
+                     FlowDirection="LeftToRight"
+                                 Text="{Binding Path=Address, UpdateSourceTrigger=Explicit,  ValidatesOnNotifyDataErrors=True,ValidatesOnDataErrors=True}" 
+                                 Style="{StaticResource TextBox}" 
+                                 Tag="{Binding Path=Text,RelativeSource={RelativeSource Self},UpdateSourceTrigger=PropertyChanged}"
+                                 Validation.ErrorTemplate="{StaticResource TextFieldErrorTemplate}"
+                                 IsReadOnly="{Binding EditMode,Converter={c:InverseBooleanConverter}}"
+                            
+                                 >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding ExplicitValidationCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type TextBox}}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </WrapPanel>
+
+        <WrapPanel>
+            <TextBlock Margin="10,0,0,0" Text="{DynamicResource PostalCode}" Style="{StaticResource LabelBlock}" />
+            <TextBox Margin="10"
+                TextAlignment="Left"
+                     FlowDirection="LeftToRight"
+                                 Text="{Binding Path=PostalCode, UpdateSourceTrigger=Explicit,  ValidatesOnNotifyDataErrors=True,ValidatesOnDataErrors=True}" 
+                                 Style="{StaticResource TextBox}" 
+                                 Tag="{Binding Path=Text,RelativeSource={RelativeSource Self},UpdateSourceTrigger=PropertyChanged}"
+                                 Validation.ErrorTemplate="{StaticResource TextFieldErrorTemplate}"
+                                 IsReadOnly="{Binding EditMode,Converter={c:InverseBooleanConverter}}"
+                            
+                                 >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding ExplicitValidationCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type TextBox}}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </WrapPanel>
+
+
+    </StackPanel>
+
+
+</UserControl>

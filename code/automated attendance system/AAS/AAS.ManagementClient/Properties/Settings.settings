@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AAS.ManagementClient.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FRSManagementClientPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G:\Codes\Desktop\Automated Attendance System Using Facial Recognitin\codes\AAS\AM.FRS.ManagementClient\bin\Debug\</Value>
+    </Setting>
+    <Setting Name="FRSManagementClientExe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">AM.FRS.ManagementClient.exe</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

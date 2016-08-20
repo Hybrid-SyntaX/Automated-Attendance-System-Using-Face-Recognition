@@ -1,0 +1,45 @@
+﻿<Page x:Class="AAS.ManagementClient.View.Reports.FilteredGrid"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="768"
+      d:DesignWidth="800"
+      Background="White"
+	Title="FilteredGrid"
+        DataContext="{Binding Source={StaticResource Locator},Path=MainViewModel}" 
+      >
+
+    <FixedPage Width="750">
+        <DataGrid IsSynchronizedWithCurrentItem="False"  ItemsSource="{Binding Path=FilteredEmployees}" 
+                  SelectedItem="{x:Null}"
+                  AutoGenerateColumns="False" 
+                  x:Name="dataGrid_Employee"  
+                  HorizontalAlignment="Left" 
+                  VerticalAlignment="Top" 
+                  Width="700" 
+                  RenderTransformOrigin="0.5,0.5" 
+                  Canvas.Left="5" 
+                  Canvas.Top="145"
+                  AlternationCount="2" 
+                  FlowDirection="RightToLeft"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="25"
+               
+                  >
+
+
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{DynamicResource EmployeeID}" Binding="{Binding EmployeeID}" />
+                <DataGridTextColumn Header="{DynamicResource FirstName}" Binding="{Binding FirstName}" />
+                <DataGridTextColumn Header="{DynamicResource LastName}" Binding="{Binding LastName}" />
+                <DataGridTextColumn Header="{DynamicResource Gender}" Binding="{Binding Gender}" />
+                <DataGridTextColumn Header="{DynamicResource IdentityNumber}" Binding="{Binding IdentityNumber}" />
+                <DataGridTextColumn Header="{DynamicResource NationalID}" Binding="{Binding NationalID}" />
+                <DataGridTextColumn Header="{DynamicResource DateOfBirth}" Binding="{Binding DateOfBirth,StringFormat=\{0:yyyy-MM-dd\}}"  Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </FixedPage>
+</Page>

@@ -1,0 +1,48 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AM.FRS.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CascadeClassifierScaleFactor" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1.2</Value>
+    </Setting>
+    <Setting Name="CascadeClassifierMinNeighbours" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="CascadeClassifierMinSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">50, 50</Value>
+    </Setting>
+    <Setting Name="CascadeClassifierMaxSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="EigenFaceRecognizerNumComponents" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">80</Value>
+    </Setting>
+    <Setting Name="EigenFaceRecognizerThreshold" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="EigenFaceRecognizerThresholdInfinity" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DefaultCascadeClassifierScaleFactor" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">1.2</Value>
+    </Setting>
+    <Setting Name="DefaultCascadeClassifierMinNeighbours" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="DefaultCascadeClassifierMinSize" Type="System.Drawing.Size" Scope="Application">
+      <Value Profile="(Default)">50, 50</Value>
+    </Setting>
+    <Setting Name="DefaultCascadeClassifierMaxSize" Type="System.Drawing.Size" Scope="Application">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="DefaultEigenFaceRecognizerNumComponents" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">80</Value>
+    </Setting>
+    <Setting Name="DefaultEigenFaceRecognizerThreshold" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DefaultEigenFaceRecognizerThresholdInfinity" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

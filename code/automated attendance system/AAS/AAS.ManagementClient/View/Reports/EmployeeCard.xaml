@@ -1,0 +1,47 @@
+﻿<Page x:Class="AAS.ManagementClient.View.Reports.EmployeeCard"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:c="clr-namespace:AAS.GUI.Converters;assembly=AAS.GUI"
+      mc:Ignorable="d" 
+      d:DesignHeight="120" d:DesignWidth="450"
+	  Title="EmployeeCard" 
+      DataContext="{Binding Source={StaticResource Locator},Path=EmployeeViewModel}"
+    >
+
+    <FixedPage Name="fixedPage_employeeCard" Width="450" Height="120" FlowDirection="RightToLeft">
+        <FixedPage.Resources>
+            <System:Double x:Key="CardFontSize">30</System:Double>
+        </FixedPage.Resources>
+        <StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="450">
+
+                <Grid Margin="10" Width="300" FlowDirection="RightToLeft">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Name="textBlock_EmployeeId" Width="Auto" FontSize="{DynamicResource CardFontSize}"  Grid.Column="0" Grid.Row="0" Style="{DynamicResource LabelBlock}" Text="{Binding EmployeeID,Mode=OneWay,Converter={c:EmployeeIDToStringConverter}}" />
+                    <TextBlock Name="textBlock_FirstName" Width="Auto"  FontSize="{DynamicResource CardFontSize}"  Style="{DynamicResource LabelBlock}" Text="{Binding FullName,Mode=OneWay}" Height="Auto" Margin="0,55,0,0" Grid.RowSpan="2" />
+                </Grid>
+
+                <Canvas>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="10">
+                        <Image Height="100" Width="100" Name="image_QRCode" Source="{Binding QRCode,Converter={c:BitmapToBitmapSourceConverter}}" Canvas.Left="-410" Canvas.Top="60" />
+                    </Border>
+                </Canvas>
+            </StackPanel>
+
+        </StackPanel>
+
+
+    </FixedPage>
+
+</Page>
